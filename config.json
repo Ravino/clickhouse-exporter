@@ -1,0 +1,44 @@
+{
+  "server": {
+    "host": "localhost",
+    "port": 9333,
+    "endpoint": "/metrics",
+    "debug": false,
+    "refresh": 1000
+  },
+
+
+  "clickHouse": {
+    "host": "http://localhost",
+    "port": 8123,
+    "db": "metricsdb",
+    "user": "user",
+    "password": "password",
+    "debug": false
+  },
+
+
+  "queries": [
+    {
+      "name": "custom-metrics-time-slote",
+      "query": "SELECT count(itemId) AS metrics FROM metrics where unixTimestamp >= (now() - 900) and unixTimestamp <= now()",
+      "counterPosition": 0,
+      "metrics": ["custom-metrics-time-slote"]
+    },
+
+
+  "promMetrics": [
+    {
+      "name": "custom-metrics-time-slote",
+      "type": "gauge",
+      "settings": {
+        "name": "custom_metrics_time_slote",
+        "help": "No metrics over a time slote",
+        "maxAgeSeconds": 1,
+        "labelNames": [
+          "metrics"
+        ]
+      }
+    }
+  ]
+}
