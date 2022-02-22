@@ -1,7 +1,7 @@
 "use strict";
 
 
-const config = require("./config");
+const config = require("./lib/config");
 const metrics = require("./lib/metrics");
 const click = require("./lib/click");
 const server = require("./lib/server");
